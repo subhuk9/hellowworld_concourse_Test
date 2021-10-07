@@ -1,0 +1,13 @@
+resource_types:
+  - name: pull-request
+    type: registry-image
+    source: 
+      respository: teliaoss/github-pr-resource
+
+resources:
+
+  - name: testhelloworld
+    type: git
+    icon: github_circle
+    source: 
+      uri: 

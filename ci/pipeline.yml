@@ -10,4 +10,34 @@ resources:
     type: git
     icon: github_circle
     source: 
-      uri: 
+      uri: https://github.com/subhuk9/hellowworld_concourse_Test
+      branch: main
+
+  - name: testhelloworld-pr
+    type: pull-request
+    check_every: 72h
+    source: 
+      repository: subhuk9/hellowworld_concourse_Test
+
+jobs:
+  - name: build-and-test
+    plan: 
+      - get: testhelloworld
+        trigger: true
+      - task: build-image
+        file: testhelloworld/ci/tasks/install-and-test.yml
+        input_mapping:
+          code: testhelloworld
+        output_mapping:
+          code: testhelloworld
+
+  - name: build-and-test-pr
+    plan: 
+      - get: testhelloworld-pr
+        trigger: true
+      - task: build-image
+        file: testhelloworld/ci/tasks/install-and-test.yml
+        input_mapping: 
+          code: testhelloworld-pr
+        output_mapping:
+          code: testhelloworld-pr

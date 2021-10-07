@@ -8,7 +8,7 @@ apt-get -y install gconf-service libasound2 libatk1.0-0 libcairo2 libdbus-1-3 li
 echo "Node Version: $(node --version)"
 echo "NPM Version: $(npm --version)"
 
-cd code
+cd myExpressApp
 
 npm install
-npm run test
+npm run start

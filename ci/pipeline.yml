@@ -13,11 +13,11 @@ resources:
       uri: https://github.com/subhuk9/hellowworld_concourse_Test
       branch: main
 
-  - name: testhelloworld-pr
-    type: pull-request
-    check_every: 72h
-    source: 
-      repository: subhuk9/hellowworld_concourse_Test
+  # - name: testhelloworld-pr
+  #   type: pull-request
+  #   check_every: 72h
+  #   source: 
+  #     repository: subhuk9/hellowworld_concourse_Test
 
 jobs:
   - name: build-and-test
@@ -31,13 +31,13 @@ jobs:
         output_mapping:
           code: testhelloworld
 
-  - name: build-and-test-pr
-    plan: 
-      - get: testhelloworld-pr
-        trigger: true
-      - task: build-image
-        file: testhelloworld/ci/tasks/install-and-test.yml
-        input_mapping: 
-          code: testhelloworld-pr
-        output_mapping:
-          code: testhelloworld-pr
+  # - name: build-and-test-pr
+  #   plan: 
+  #     - get: testhelloworld-pr
+  #       trigger: true
+  #     - task: build-image
+  #       file: testhelloworld/ci/tasks/install-and-test.yml
+  #       input_mapping: 
+  #         code: testhelloworld-pr
+  #       output_mapping:
+  #         code: testhelloworld-pr
